@@ -7,17 +7,18 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
-const cookieParser = require('cookie-parser');
-const compression = require('compression');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 app.set('view engine', 'pug'); // express automatically supports pug
 app.set('views', path.join(__dirname, 'views'));
+app.enable('trust proxy');
 // Set security HTTP headers
 app.use(helmet());
 // Development logging
@@ -34,6 +35,7 @@ app.use('/api', limiter);
 // Body parser, reading data from body into req.body
 
 // start express app
+
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
