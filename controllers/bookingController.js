@@ -1,4 +1,4 @@
-const stripe = require('stripe')('sk_test_51H2J3GLvWhH6xCZKI6RnbtBUKmyyea4aacYSgI9KCAcBnlEUk83zlFMrYdhTpuwPgogysicKxEFwJ5PZCshIYIMg00OuDD02Bu');
+const stripe = require('stripe')(''); // renived key
 const Tour = require('../models/tourModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');

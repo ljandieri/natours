@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
@@ -25,7 +26,13 @@ app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
+// CORS
+app.use(cors());
+// Access-Control-Allow-Origin *
 // Limit requests from same API
+app.options('*', cors());
+
+
 const limiter = rateLimit({
     max: 100,
     windowMs: 60 * 60 * 1000,
