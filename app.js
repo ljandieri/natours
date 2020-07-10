@@ -13,6 +13,7 @@ const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 app.set('view engine', 'pug'); // express automatically supports pug
@@ -51,6 +52,7 @@ app.use(hpp({
         'price',
     ],
 }));
+app.use(compression());
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 // Test middleware
