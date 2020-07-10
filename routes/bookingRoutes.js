@@ -12,7 +12,7 @@ Router.route('/')
    .get(bookingController.getAllBookings)
    .post(bookingController.createBooking);
 
-Router.use('/:id')
+Router.route('/:id')
    .get(bookingController.getBooking)
    .patch(bookingController.updateBooking)
    .delete(bookingController.deleteBooking);
